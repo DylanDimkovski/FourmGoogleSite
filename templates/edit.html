@@ -1,0 +1,30 @@
+{% extends 'default.html' %} {% block content %}
+<h1>{% block title %}Edit Post{% endblock %}</h1>
+<div class="container">
+<div class="bg-secondary p-3">
+    <form enctype="multipart/form-data" action="/updatePost" method="post">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="subject"
+          placeholder="Subject"
+          required
+          value='{{post["subject"]}}'
+        />
+        <br />
+        <textarea
+          type="text"
+          class="form-control"
+          name="message"
+          placeholder="Message"
+        >{{post['message']}}</textarea>
+        <br />
+        <input type="file" name="image" class="form-control" />
+        <br />
+        <input type="submit" class="btn btn-success" value="Post" />
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

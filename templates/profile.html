@@ -1,0 +1,95 @@
+{% extends 'default.html' %} {% block content %}
+
+<div class="container">
+  <div class="row p-3">
+    <div class="col-10">
+      <h1>{% block title %}Welcome {{g.user['userName']}} {% endblock %}</h1>
+      <h2>User ID: {{g.user['id']}}</h2>
+    </div>
+    <div class="col-1">
+      <img
+        class="profileimg d-block border text-align-right"
+        src="{{g.user['URL']}}"
+      />
+    </div>
+    <hr />
+    <div class="bg-secondary p-3">
+      <form
+        enctype="multipart/form-data"
+        action="/changePassword"
+        method="post"
+      >
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            name="oldPassword"
+            placeholder="Old Password"
+            required
+          />
+          <br />
+          <input
+            type="password"
+            class="form-control"
+            name="newPassword"
+            placeholder="New Password"
+            required
+          />
+          <br />
+          <input type="submit" class="btn btn-danger" value="Change Password" />
+        </div>
+      </form>
+    </div>
+    <hr />
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Message</th>
+          <th scope="col">Date Posted</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <th scope="row">{{post['postID']}}</th>
+          <td>{{post['subject']}}</td>
+          <td>{{post['message']}}</td>
+          <td>{{post['date']}}</td>
+          <td>
+            <a class="btn btn-success" href='/edit?pid={{ post["postID"] }}'>Edit</a>
+        </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="bg-secondary p-3">
+      <form enctype="multipart/form-data" action="/makepost" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="subject"
+            placeholder="Subject"
+            required
+          />
+          <br />
+          <textarea
+            type="text"
+            class="form-control"
+            name="message"
+            placeholder="Message"
+          ></textarea>
+          <br />
+          <input type="file" name="image" class="form-control" />
+          <br />
+          <input type="submit" class="btn btn-success" value="Post" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

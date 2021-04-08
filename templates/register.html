@@ -1,0 +1,59 @@
+{% extends 'default.html' %}
+{% block content %}
+
+<h1>{% block title %}Register{% endblock %}</h1>
+<form enctype="multipart/form-data" action="/register" method="post">
+  <div class="form-group">
+    <label for="idInput">ID</label>
+    <input
+      type="text"
+      name="idInput"
+      class="form-control"
+      id="idInput"
+      rows="1"
+      placeholder="Enter ID"
+      required
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="userInput">Username</label>
+    <input
+      type="text"
+      name="userInput"
+      class="form-control"
+      id="userInput"
+      placeholder="Enter Username"
+      required
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="passwordInput">Password</label>
+    <input
+      name="passwordInput"
+      type="password"
+      class="form-control"
+      id="passwordInput"
+      placeholder="Password"
+      required
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="pictureUpload">Upload Profile Picture</label>
+    <input
+      type="file"
+      name="image"
+      class="form-control"
+      id="pictureUpload"
+      required
+    />
+  </div>
+  <br />
+  <input type="submit" class="btn btn-success" value="Register" />
+</form>
+{% for message in get_flashed_messages() %}
+<div class="flash">{{ message }}</div>
+{% endfor %} 
+{% endblock %}

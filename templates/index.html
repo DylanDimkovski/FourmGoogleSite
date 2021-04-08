@@ -1,0 +1,32 @@
+{% extends 'default.html' %} {% block content %}
+<div class="container">
+  <h1>{% block title %}Feed{% endblock %}</h1>
+  {% for post in posts %}  
+  <div class="bg-secondary p-3">
+      <div class="row">
+        <div class="col text-white">
+          <h1>User: {{post['userID']}}</h1>
+          <h2>Subject: {{post['subject']}}</h2>
+        </div>
+        <div class="col-2 text-white w-25 align-items-right">
+          <h3>{{post['date']}}</h2>
+        </div>
+      </div>
+      <hr>
+      {% if not post['imageURL'] == '' %}
+      <img
+            class=""
+            width="120"
+            height="120"
+            src="{{post['imageURL']}}"
+          />
+          <hr>
+      {% else %}
+      
+      {% endif %}
+      <p class="bg-white p-2">{{post['message']}}</p>
+    </div>
+    <br>
+  {% endfor %}
+</div>
+{% endblock %}

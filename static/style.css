@@ -1,0 +1,17 @@
+body {
+  font-family: Arial;
+  background-color: #f2edd7;
+}
+
+.main-container{
+  margin: 150px auto !important;
+}
+.profileimg{
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 100% !important;
+}
+
+* {
+  border-radius: 5px;
+}
